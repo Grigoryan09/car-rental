@@ -24,9 +24,9 @@ public class AddRentals extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       req.setAttribute("cars", carService.getAlLCar());
-       req.setAttribute("customers", customerService.getAllCustomer());
-       req.getRequestDispatcher("add-rentals.jsp").forward(req,resp);
+            req.setAttribute("cars", carService.getAlLCar());
+            req.setAttribute("customers", customerService.getAllCustomer());
+            req.getRequestDispatcher("WEB-INF/add-rentals.jsp").forward(req,resp);
     }
 
     @Override

@@ -14,12 +14,12 @@ import java.util.List;
 @WebServlet(value = "/cars")
 public class CarsServlet extends HttpServlet {
 
-    private CarService carService =  new CarService();
+    private CarService carService = new CarService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Car> allCars = carService.getAlLCar();
         req.setAttribute("allCars", allCars);
-        req.getRequestDispatcher("cars.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/cars.jsp").forward(req, resp);
     }
 }

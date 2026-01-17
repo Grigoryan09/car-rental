@@ -19,7 +19,7 @@ public class UpdateRentalStatusServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("rentalId"));
         RentalStatus rentalStatus = RentalStatus.valueOf(request.getParameter("status"));
         rentalService.updateRentalStatus(id, rentalStatus);
-        response.sendRedirect("/rentals");
+        response.sendRedirect("rentals");
 
     }
 }
