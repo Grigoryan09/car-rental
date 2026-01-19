@@ -9,15 +9,16 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {
-        "/addCar",
+        "/addcar",
         "/addCustomer",
-        "/addRental",
-        "/updateRentalStatus"})
+        "/updateRentalStatus"
+})
 
 public class AdminAuthFilter implements Filter {
 
@@ -28,7 +29,7 @@ public class AdminAuthFilter implements Filter {
             if (user != null && user.getRole() == UserRole.ADMIN) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
-                ((HttpServletRequest) servletRequest).getRequestDispatcher("/").forward(servletRequest, servletResponse);
+                ((HttpServletResponse) servletResponse).sendRedirect("/home");
             }
         }
 
