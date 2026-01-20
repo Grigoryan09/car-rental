@@ -21,7 +21,9 @@ public class DBConnectionProvider {
         }
     }
 
-    public static DBConnectionProvider getInstance() {return instance;}
+    public static DBConnectionProvider getInstance() {
+        return instance;
+    }
 
     public Connection getConnection() {
         try {

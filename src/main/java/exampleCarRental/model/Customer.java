@@ -15,4 +15,5 @@ public class Customer {
     private String licenseNumber;
     private String phone;
     private String email;
+    private String pictureUrl;
 }

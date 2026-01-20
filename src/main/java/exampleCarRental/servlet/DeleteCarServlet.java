@@ -1,6 +1,6 @@
 package exampleCarRental.servlet;
 
-import exampleCarRental.service.RentalService;
+import exampleCarRental.service.CarService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,15 +9,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(value = ("/rentals"))
-public class RentalsServlet extends HttpServlet {
+@WebServlet(value = "/deleteCar")
+public class DeleteCarServlet extends HttpServlet {
 
-    private final RentalService rentalService = new RentalService();
+    CarService carService = new CarService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("rentals", rentalService.getRentalDto());
-        req.getRequestDispatcher("WEB-INF/rentals.jsp").forward(req, resp);
+        int id = Integer.parseInt(req.getParameter("id"));
+        carService.deleteCar(id);
+        resp.sendRedirect("/cars");
     }
 }
 

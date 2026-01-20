@@ -41,7 +41,8 @@
 
             <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
                 <p style="margin: 0;">Don't have an account?
-                    <a href="<%= request.getContextPath() %>/register" style="color: #2563eb; text-decoration: none; font-weight: 600;">Create one now</a>
+                    <a href="<%= request.getContextPath() %>/register"
+                       style="color: #2563eb; text-decoration: none; font-weight: 600;">Create one now</a>
                 </p>
             </div>
         </div>

@@ -4,7 +4,6 @@ import exampleCarRental.db.DBConnectionProvider;
 import exampleCarRental.model.Car;
 import exampleCarRental.model.CarStatus;
 
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -52,7 +51,7 @@ public class CarService {
     public Car getCarById(int id) {
         String sql = "SELECT * FROM car WHERE id = ?";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -93,9 +92,9 @@ public class CarService {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                cars.add( addCar(resultSet));
+                cars.add(addCar(resultSet));
             }
-            return  cars;
+            return cars;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -105,7 +104,7 @@ public class CarService {
         List<Car> cars = new ArrayList<>();
         String sql = " SELECT * FROM cars WHERE status = 'AVAILABLE' AND id NOT IN ( SELECT car_id FROM rentals WHERE status = 'ACTIVE'AND (start_date <= ? AND end_date >= ?))";
 
-        try (PreparedStatement ps = connection.prepareStatement(sql);){
+        try (PreparedStatement ps = connection.prepareStatement(sql);) {
             ps.setString(1, CarStatus.AVAILABLE.name());
             ps.setString(2, "ACTIVE");
             ps.setDate(1, Date.valueOf(end));

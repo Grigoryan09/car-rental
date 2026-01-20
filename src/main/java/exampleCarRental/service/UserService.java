@@ -14,10 +14,10 @@ public class UserService {
 
     public void addUser(User user) {
         String sql = "INSERT INTO user  VALUES (null, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql , PreparedStatement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, user.getName());
             ps.setString(2, user.getSurname());
-            ps.setString(3,user.getUsername());
+            ps.setString(3, user.getUsername());
             ps.setString(4, user.getPassword());
             ps.setString(5, user.getRole().name());
             ps.executeUpdate();

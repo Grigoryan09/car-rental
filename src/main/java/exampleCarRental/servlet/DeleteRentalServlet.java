@@ -9,15 +9,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(value = ("/rentals"))
-public class RentalsServlet extends HttpServlet {
+@WebServlet(value = "/deleteRental")
+public class DeleteRentalServlet extends HttpServlet {
 
-    private final RentalService rentalService = new RentalService();
+    RentalService rentalService = new RentalService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("rentals", rentalService.getRentalDto());
-        req.getRequestDispatcher("WEB-INF/rentals.jsp").forward(req, resp);
+        int id = Integer.parseInt(req.getParameter("id"));
+        rentalService.deleteRental(id);
+        resp.sendRedirect("/rentals");
     }
 }
 

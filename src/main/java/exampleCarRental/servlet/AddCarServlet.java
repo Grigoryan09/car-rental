@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 @WebServlet(value = "/addcar")
 public class AddCarServlet extends HttpServlet {
 
-    private CarService carService =  new CarService();
+    private CarService carService = new CarService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("WEB-INF/add-car.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/add-car.jsp").forward(req, resp);
     }
 
     @Override

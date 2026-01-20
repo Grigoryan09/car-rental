@@ -10,7 +10,6 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {
@@ -28,7 +27,7 @@ public class UserAuthFilter implements Filter {
             if (user != null) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
-                ((HttpServletResponse) servletResponse).sendRedirect("/");
+                ((HttpServletResponse) servletResponse).sendRedirect("/login");
             }
         }
     }

@@ -62,7 +62,8 @@
 
             <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
                 <p style="margin: 0;">Already have an account?
-                    <a href="<%= request.getContextPath() %>/login" style="color: #2563eb; text-decoration: none; font-weight: 600;">Sign in here</a>
+                    <a href="<%= request.getContextPath() %>/login"
+                       style="color: #2563eb; text-decoration: none; font-weight: 600;">Sign in here</a>
                 </p>
             </div>
         </div>

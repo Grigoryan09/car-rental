@@ -17,7 +17,7 @@ public class CustomerService {
     private final Connection connection = DBConnectionProvider.getInstance().getConnection();
 
     public void addCustomer(Customer customer) {
-        String sql = "INSERT INTO customer(name,surname,license_number,phone,email) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customer(name,surname,license_number,phone,email,picture_url) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, customer.getName());
@@ -25,6 +25,7 @@ public class CustomerService {
             preparedStatement.setString(3, customer.getLicenseNumber());
             preparedStatement.setString(4, customer.getPhone());
             preparedStatement.setString(5, customer.getEmail());
+            preparedStatement.setString(6, customer.getPictureUrl());
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
@@ -43,8 +44,8 @@ public class CustomerService {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-               getCustomer(resultSet);
-               customers.add(getCustomer(resultSet));
+                getCustomer(resultSet);
+                customers.add(getCustomer(resultSet));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -55,7 +56,7 @@ public class CustomerService {
     public Customer getCustomerById(int id) {
         String sql = "SELECT * FROM customer WHERE id = ?";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -86,6 +87,7 @@ public class CustomerService {
         customer.setLicenseNumber(resultSet.getString("license_number"));
         customer.setPhone(resultSet.getString("phone"));
         customer.setEmail(resultSet.getString("email"));
+        customer.setPictureUrl(resultSet.getString("picture_url"));
         return customer;
     }
 }

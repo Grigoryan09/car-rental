@@ -19,10 +19,11 @@ public class CustomersServlet extends HttpServlet {
 
         Object user = req.getSession().getAttribute("user");
         if (user == null) {
-            resp.sendRedirect(req.getContextPath() + "/login");;
-        }else {
-            req.setAttribute("customers",customerService.getAllCustomer());
-            req.getRequestDispatcher("WEB-INF/customers.jsp").forward(req,resp);
+            resp.sendRedirect(req.getContextPath() + "/login");
+            ;
+        } else {
+            req.setAttribute("customers", customerService.getAllCustomer());
+            req.getRequestDispatcher("WEB-INF/customers.jsp").forward(req, resp);
         }
 
 

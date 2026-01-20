@@ -1,7 +1,6 @@
 package exampleCarRental.service;
 
 import exampleCarRental.db.DBConnectionProvider;
-
 import exampleCarRental.dto.RentalDto;
 import exampleCarRental.model.Car;
 import exampleCarRental.model.CarStatus;
@@ -19,8 +18,6 @@ import java.sql.Statement;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-
-import static javax.print.attribute.standard.JobState.CANCELED;
 
 
 public class RentalService {
@@ -144,6 +141,17 @@ public class RentalService {
         switch (rentalById.getRentalStatus()) {
             case ACTIVE -> carService.changeCarStatus(rentalById.getCarId(), CarStatus.RENTED);
             case CANCELLED, FINISHED -> carService.changeCarStatus(rentalById.getCarId(), CarStatus.AVAILABLE);
+        }
+    }
+
+    public void deleteRental(int id) {
+        String sql = "DELETE FROM rental WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
